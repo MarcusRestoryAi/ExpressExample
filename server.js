@@ -18,10 +18,16 @@ app.listen(portNr, () => {
     console.log("Servern lyssnar nu på port nr 8080");
 })
 
-//Skapar en GET metod för index/start
+//Skapar en GET metod för index/start, index.html
 app.get("/", (req, res) => {
-    res.status(200).send("Välkommen idag till våran server!");
+    //res.status(200).send("Välkommen idag till våran server!");
+    res.status(200).sendFile("./index.html", {root: __dirname});
 });
+
+//Skapa en Get enpoint för /About
+app.get("/about", (req, res) => {
+    res.status(200).sendFile("./about.html", {root: __dirname});
+})
 
 //Skapa en POST metod som tar emot en Payload
 app.post("/users", (req, res) => {
