@@ -9,9 +9,12 @@ const - Konstant värde.
 const express = require('express');
 const app = new express();
 const portNr = 8080;
-app.use(express.json());
 const fs = require('fs');
 const usersFilePath = "./users.json";
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.listen(portNr, () => {
     //För att srkiva ut till konsol, använd console.log()
@@ -29,10 +32,17 @@ app.get("/about", (req, res) => {
     res.status(200).sendFile("./about.html", {root: __dirname});
 })
 
+//Skapa en Get enpoint för /script
+app.get("/script", (req, res) => {
+    res.sendFile("./script.js", {root: __dirname});
+})
+
 //Skapa en POST metod som tar emot en Payload
 app.post("/users", (req, res) => {
     //Hämta payload från Request
     const data = req.body;
+
+    console.log(data);
 
     //Spara data till en users.json fil
     const jsonData = JSON.stringify(data, null, 2);
@@ -41,7 +51,7 @@ app.post("/users", (req, res) => {
     })
 
     //Returnera svar till user
-    res.status(200).send(`Data sparad: ${jsonData}`);
+    res.redirect("/");
 })
 
 app.get("/users", (req, res) => {

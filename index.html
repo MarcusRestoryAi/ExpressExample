@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
+    <script src="/script" defer></script>
 </head>
 <body>
     <h1>Välkommen</h1>
@@ -11,5 +12,28 @@
     <div>
         <a href="/about">About</a>
     </div>
+
+    <h2>Mata in userData här</h2>
+    <form action="http://localhost:8080/users" method="post">
+
+        <div>
+            <label for="username">Skriv ditt namn här:</label>
+            <input type="text" name="username" id="username">
+        </div>
+
+        <div>
+            <label for="age">Skriv in din ålder här:</label>
+            <input type="number" name="age" id="age">
+        </div>
+
+        <button type="submit">Skicka iväg data</button>
+
+    </form>
+
+    <h2>Hämta UserData</h2>
+    <button id="btnFetchUsers">Hämta Users</button>
+    <div id="usersOutput"></div>
+
+
 </body>
 </html>
