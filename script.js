@@ -11,6 +11,15 @@ document.getElementById("btnFetchUsers").addEventListener('click', async () => {
     //Skriver om response payload, från JSON till Js-Object
     const data = await response.json();
 
+    /*
+    ForLoop i JS
+
+    for (let element in array) {
+        element
+    }
+
+    */
+
     let output = `Namnet är ${data.username} och åldern är ${data.age}`;
 
     //Skriv ut string till div-tag

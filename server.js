@@ -42,13 +42,26 @@ app.post("/users", (req, res) => {
     //Hämta payload från Request
     const data = req.body;
 
-    console.log(data);
+    //console.log(data);
 
-    //Spara data till en users.json fil
-    const jsonData = JSON.stringify(data, null, 2);
-    fs.writeFile(usersFilePath, jsonData, (err) => {
-        if (err) console.log(err.message);
+    //Hämta befintlig data från users.json
+    fs.readFile(usersFilePath, "utf8", (err, data) => {
+
+        //Konvertera data från JSON till js-array, med JSON-klassen
+
+        //Lägg till nytt element till array
+        //arr.push(element)
+
+
+        //Spara data till en users.json fil
+        const jsonData = JSON.stringify(data, null, 2);
+        fs.writeFile(usersFilePath, jsonData, (err) => {
+            if (err) console.log(err.message);
+        })
+
     })
+
+    
 
     //Returnera svar till user
     res.redirect("/");
