@@ -37,6 +37,11 @@ app.get("/script", (req, res) => {
     res.sendFile("./script.js", {root: __dirname});
 })
 
+//Skapa en Get enpoint för /script
+app.get("/style", (req, res) => {
+    res.sendFile("./style.css", {root: __dirname});
+})
+
 //Skapa en POST metod som tar emot en Payload
 app.post("/users", (req, res) => {
     //Hämta payload från Request
