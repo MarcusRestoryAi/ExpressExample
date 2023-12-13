@@ -40,28 +40,26 @@ app.get("/script", (req, res) => {
 //Skapa en POST metod som tar emot en Payload
 app.post("/users", (req, res) => {
     //Hämta payload från Request
-    const data = req.body;
+    const reqData = req.body;
 
     //console.log(data);
 
     //Hämta befintlig data från users.json
-    fs.readFile(usersFilePath, "utf8", (err, data) => {
+    fs.readFile(usersFilePath, "utf8", (err, fileData) => {
 
         //Konvertera data från JSON till js-array, med JSON-klassen
+        let arrUsers = JSON.parse(fileData)
 
         //Lägg till nytt element till array
-        //arr.push(element)
-
+        arrUsers.push(reqData)
 
         //Spara data till en users.json fil
-        const jsonData = JSON.stringify(data, null, 2);
+        const jsonData = JSON.stringify(arrUsers, null, 2);
         fs.writeFile(usersFilePath, jsonData, (err) => {
             if (err) console.log(err.message);
         })
 
     })
-
-    
 
     //Returnera svar till user
     res.redirect("/");

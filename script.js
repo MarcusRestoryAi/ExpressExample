@@ -9,19 +9,17 @@ document.getElementById("btnFetchUsers").addEventListener('click', async () => {
     console.log(response);
 
     //Skriver om response payload, från JSON till Js-Object
-    const data = await response.json();
+    const arrUsers = await response.json();
 
-    /*
-    ForLoop i JS
+    console.log(arrUsers);
 
-    for (let element in array) {
-        element
-    }
-
-    */
-
-    let output = `Namnet är ${data.username} och åldern är ${data.age}`;
+    //ForEach loop där vi går igenom varje User
+    let output = "";
+    arrUsers.forEach((user) => {
+        console.log(user);
+        output += `<p>Namnet är ${user.username} och åldern är ${user.age}</p>`;
+    });
 
     //Skriv ut string till div-tag
-    document.getElementById("usersOutput").innerText = output;
+    document.getElementById("usersOutput").innerHTML = output;
 });
